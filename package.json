@@ -1,0 +1,176 @@
+{
+    "name": "broxlab-ai",
+    "displayName": "BroxLab AI",
+    "description": "Autonomous coding assistant using OpenRouter",
+    "version": "0.0.2",
+    "publisher": "broxlab",
+    "engines": {
+        "vscode": "^1.90.0"
+    },
+    "categories": [
+        "Machine Learning",
+        "Chat"
+    ],
+    "main": "./out/extension.js",
+    "activationEvents": [
+        "onCommand:broxlab.setApiKey",
+        "onCommand:broxlab.openSettings",
+        "onCommand:broxlab.moveToSecondarySideBar"
+    ],
+    "contributes": {
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "broxlab-activitybar",
+                    "title": "BroxLab AI",
+                    "icon": "$(sparkle)"
+                }
+            ]
+        },
+        "views": {
+            "broxlab-activitybar": [
+                {
+                    "type": "webview",
+                    "id": "broxlab.chatView",
+                    "name": "Chat & Settings",
+                    "icon": "$(sparkle)"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "broxlab.setApiKey",
+                "title": "BroxLab AI: Set OpenRouter API Key"
+            },
+            {
+                "command": "broxlab.openSettings",
+                "title": "BroxLab AI: Open Settings"
+            },
+            {
+                "command": "broxlab.moveToSecondarySideBar",
+                "title": "Move to Secondary Side Bar",
+                "icon": "$(layout-sidebar-right)"
+            },
+            {
+                "command": "broxlab.detectOllama",
+                "title": "BroxLab AI: Detect Ollama"
+            },
+            {
+                "command": "broxlab.checkGitStatus",
+                "title": "BroxLab AI: Check Git Status"
+            },
+            {
+                "command": "broxlab.resetSettings",
+                "title": "BroxLab AI: Reset Settings"
+            }
+        ],
+        "menus": {
+            "view/title": [
+                {
+                    "command": "broxlab.moveToSecondarySideBar",
+                    "when": "view == broxlab.chatView",
+                    "group": "navigation"
+                }
+            ]
+        },
+        "keybindings": [
+            {
+                "command": "broxlab-activitybar.focus",
+                "key": "ctrl+shift+l",
+                "mac": "cmd+shift+l",
+                "when": "editorTextFocus"
+            }
+        ],
+        "configuration": {
+            "title": "BroxLab AI",
+            "properties": {
+                "broxlab.defaultModel": {
+                    "type": "string",
+                    "default": "anthropic/claude-3.7-sonnet",
+                    "description": "Default OpenRouter model to use (e.g., anthropic/claude-3.7-sonnet)"
+                },
+                "broxlab.customPrompt": {
+                    "type": "string",
+                    "default": "Generate an enhanced version of this prompt (reply with only the enhanced prompt - no conversation, explanations, lead-in, bullet points, placeholders, or surrounding quotes): ${userInput}",
+                    "description": "A template to enhance or wrap your prompt before sending it to the AI. Use ${userInput} as a placeholder."
+                },
+                "broxlab.approvalMode": {
+                    "type": "string",
+                    "enum": [
+                        "Auto Approve",
+                        "Ask Every Time",
+                        "Ask Once Per Session"
+                    ],
+                    "default": "Ask Every Time",
+                    "description": "Configure when the agent should ask for confirmation before modifying files or executing commands."
+                },
+                "broxlab.enableTerminalInvoke": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Allow BroxLab AI to execute terminal commands (subject to Approval Mode)."
+                },
+                "broxlab.enableTokenTracking": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Display real-time token count and cost tracking in the chat view."
+                },
+                "broxlab.enableAutoContext": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Automatically retrieve and attach relevant project files to chats (RAG)."
+                },
+                "broxlab.enableVisionSupport": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Allow dragging and dropping images into the chat for AI analysis."
+                },
+                "broxlab.enableCodeLens": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Show BroxLab Action buttons (Explain, Refactor) above functions in the editor."
+                },
+                "broxlab.enableProactiveBugDetection": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Continuously scan active files for bugs and security risks in the background."
+                },
+                "broxlab.localModelUrl": {
+                    "type": "string",
+                    "default": "http://localhost:11434/api/generate",
+                    "description": "URL for local model server (e.g., Ollama)."
+                },
+                "broxlab.featuresMode": {
+                    "type": "string",
+                    "enum": [
+                        "Full",
+                        "Code Only",
+                        "Git Only",
+                        "Terminal Only",
+                        "Read Only"
+                    ],
+                    "default": "Full",
+                    "description": "Control which features are enabled. Full enables all, or limit to specific modes."
+                },
+                "broxlab.autoSelectModel": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Automatically select the best model based on the task."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run build-webview && npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "package": "vsce package",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build-webview": "cd webview-ui && npm install && npm run build"
+    },
+    "devDependencies": {
+        "@types/node": "20.x",
+        "@types/vscode": "^1.90.0",
+        "typescript": "^5.x",
+        "vsce": "^2.15.0"
+    }
+}

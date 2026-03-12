@@ -1,0 +1,5 @@
+{
+  "name": "BroxLab AI Assistant",
+  "description": "A professional AI-powered coding assistant with integrated Git workflows, terminal simulation, and multi-step reasoning.",
+  "requestFramePermissions": []
+}

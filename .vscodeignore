@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+out/
+webview-ui/dist/
+webview-ui/node_modules/
+
+# Development files
+.vscode/
+.vscode-test/
+src/
+webview-ui/src/
+*.ts
+*.map
+
+# Docs
+*.md
+!README.md
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test
+test/
+
+# Misc
+.tmp/
+*.vsix
