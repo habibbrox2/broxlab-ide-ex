@@ -56,6 +56,12 @@ function updateReleaseNotes(tag, commit, date) {
   const endMarker = '<!-- RELEASE_NOTES_END -->';
   const regex = new RegExp(`(${startMarker})([\s\S]*?)(${endMarker})`, 'm');
 
+  console.log('Release note markers:', {
+    start: content.indexOf(startMarker),
+    end: content.indexOf(endMarker),
+    regexMatch: regex.test(content),
+  });
+
   if (!regex.test(content)) {
     console.warn(`\n⚠️ Could not find release notes markers in ${file}. Skipping update.`);
     return;
