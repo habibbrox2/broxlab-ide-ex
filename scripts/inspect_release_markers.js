@@ -1,0 +1,10 @@
+const fs = require('fs');
+const c = fs.readFileSync('broxlab-docs.md', 'utf8');
+const start = '<!-- RELEASE_NOTES_START -->';
+const end = '<!-- RELEASE_NOTES_END -->';
+const si = c.indexOf(start);
+const ei = c.indexOf(end);
+console.log('start index', si, 'end index', ei);
+console.log('matches simple regex', /<!-- RELEASE_NOTES_START -->([\s\S]*?)<!-- RELEASE_NOTES_END -->/m.test(c));
+console.log('around start:', JSON.stringify(c.slice(si - 40, si + start.length + 40)));
+console.log('around end:', JSON.stringify(c.slice(ei - 40, ei + end.length + 40)));
