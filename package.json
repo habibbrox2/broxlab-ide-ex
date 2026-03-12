@@ -165,7 +165,8 @@
         "watch": "tsc -watch -p ./",
         "package": "vsce package",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build-webview": "cd webview-ui && npm install && npm run build"
+        "build-webview": "cd webview-ui && npm install && npm run build",
+        "release": "node ./scripts/release.js"
     },
     "devDependencies": {
         "@types/node": "20.x",
