@@ -33,6 +33,25 @@ BroxLab AI is an autonomous coding assistant that works directly from your VS Co
 
 ---
 
+## Release Workflow (build → lint → release)
+
+1. Build the webview bundle:
+   ```bash
+   npm run build-webview
+   ```
+2. Verify TypeScript is clean:
+   ```bash
+   npm run lint
+   ```
+3. Release (bump + tag + push):
+   ```bash
+   npm run release [patch|minor|major|prerelease|none]
+   ```
+   - `patch` is the default if you omit the argument.
+   - `none` will skip version bump and just push commits/tags.
+
+---
+
 ## Configuration
 
 ### Get Started
