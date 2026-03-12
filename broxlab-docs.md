@@ -119,4 +119,12 @@ BroxLab AI হলো একটি ওপেন-সোর্স অটোনো�
 
 ---
 
+## 📝 Release Notes
+
+<!-- RELEASE_NOTES_START -->
+*No releases yet. Run `npm run release` to populate this section.*
+<!-- RELEASE_NOTES_END -->
+
+---
+
 *BroxLab AI এর সাথে আপনার কোডিং অভিজ্ঞতা আরও দ্রুত ও সহজ হোক!* ✨
